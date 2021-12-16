@@ -219,6 +219,9 @@ func DebParseMetadata(rdr io.Reader) (*Package, error) {
 			if string(b) != "2.0\n" {
 				return nil, fmt.Errorf("Binary version not valid: %s", string(b))
 			}
+		} else if hdr.Name == "_gpgrepo" {
+			// TODO: Parse and keep some useful signing information
+			continue
 		} else {
 			return nil, fmt.Errorf("Unsupported file %s", hdr.Name)
 		}
